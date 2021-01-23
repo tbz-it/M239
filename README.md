@@ -2,6 +2,10 @@
 
 Internetserver mit verschiedenen Diensten konfigurieren und in Betrieb nehmen und dabei Sicherheitsvorgaben und betriebliche Anforderungen beachten
 
+### Node.js inkl. Postman-Repo für Einstieg ins Thema REST-API
+Node.js v15 startet nach dem Bootprozess der VM automatisch (Added 23.1. KAE/CAL) 
+Im Verzeichnis "postman" ist ein Repository von Nate Taylor bereitgestellt. Geeignet für diverse REST-Abfragen mit div. HTTP-Methoden 
+
 ### Samba/SMB
 
 Seit 1992 bietet [Samba](https://www.samba.org/) sichere, stabile und schnelle Datei- und Druckdienste für alle Clients, die das SMB / CIFS-Protokoll verwenden, z. B. alle DOS- und Windows-Versionen, OS / 2, Linux und viele andere.
