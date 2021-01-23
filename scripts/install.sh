@@ -11,6 +11,6 @@ sudo snap install powershell --classic
 git clone https://github.com/taylonr/postman.git
 cd postman
 npm install
-npm start:dev
+npm run start:dev
 # Introseite
 bash -x /opt/lernmaas/helper/intro
