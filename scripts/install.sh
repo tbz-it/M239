@@ -13,8 +13,9 @@ sudo snap install powershell --classic
 git clone https://github.com/taylonr/postman.git
 cd postman
 npm install
-# Start im Background (damit nachfolgende Statements durchgeführt werden)
+# Start im Background (damit das Skript abgeschlossen werden kann)
 (npm run start:dev&)
+cd ..
 
-# Introseite
+# Introseite 
 bash -x /opt/lernmaas/helper/intro
