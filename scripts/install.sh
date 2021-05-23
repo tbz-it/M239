@@ -9,11 +9,12 @@ curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo snap install powershell --classic
 
-# Introseite
-bash -x /opt/lernmaas/helper/intro
-
 # nachfolgend wird das Verzeichnis gewechselt. => intro muss vorher aufgerufen werden
 git clone https://github.com/taylonr/postman.git
 cd postman
 npm install
-npm run start:dev
+# Start im Background (damit nachfolgende Statements durchgeführt werden)
+(npm run start:dev&)
+
+# Introseite
+bash -x /opt/lernmaas/helper/intro
