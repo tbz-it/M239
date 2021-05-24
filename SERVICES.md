@@ -118,30 +118,28 @@ Erstellen Sie einen Eintrag mit folgendem Content
       }
 
 ## Aufrufe mit PowerShell
-Mit PowerShell erfolgen die Anfragen wie folgt (Beispiele):
+Mit PowerShell erfolgen die Anfragen wie folgt. 
 															    
 ### Lesen der vorhandenen Bücher
 
-		$result = Invoke-WebRequest  `
-			    -Uri "http://${ADDR}:3000/books"  `
-			    -Headers @{  `
-				"G-Token" = "ROM831ESV" ;  `
-			     } `
-			    -Method GET
-		$result.RawContent            
+		Invoke-WebRequest  `
+		    -Uri "http://${ADDR}:3000/books"  `
+		    -Headers @{  `
+			"G-Token" = "ROM831ESV" ;  `
+		     } `
+		    -Method GET
 
 ### Erstellen eines neuen Bucheintrags
 
-		$result = Invoke-WebRequest  `
-			    -Uri "http://${ADDR}:3000/books"  `
-			    -Headers @{  `
-				"G-Token" = "ROM831ESV" ;  `
-				"Content-Type" = "application/json" `
-			     } `
-			    -Method Post  `
-			    -Body '{"id": "15", "title": "PowerShell", "author": "Dr. Tobias Weltner"}' 
+		Invoke-WebRequest  `
+		    -Uri "http://${ADDR}:3000/books"  `
+		    -Headers @{  `
+			"G-Token" = "ROM831ESV" ;  `
+			"Content-Type" = "application/json" `
+		     } `
+		    -Method Post  `
+		    -Body '{"id": "15", "title": "PowerShell", "author": "Dr. Tobias Weltner"}' 
 
-		$result.RawContent
 
 															    
 															    
