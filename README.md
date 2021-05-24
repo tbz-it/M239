@@ -21,5 +21,5 @@ Zugriff mittels:
 
 ### Apache Web Server
 
-Das Verzeichnis `/home/ubuntu/data` ist verlinkt in `/var/www/html` und unter der URL [${ADDR}/data](${ADDR}/data) erreichbar.  
+Das Verzeichnis `/home/ubuntu/data` ist verlinkt in `/var/www/html` und unter der URL [http://${ADDR}/data](http://${ADDR}/data) erreichbar.  
 
