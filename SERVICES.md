@@ -1,9 +1,15 @@
 # M239 REST-API Übungen mit Postman
 
+Die Übungen stützen sich auf [diesen](https://github.com/vdespa/introduction-to-postman-course) Kurs über API mit Postman. 
+Allerdings können diese mit jedem anderen Tool (bspw. Telnet, CURL, PowerShell) nachgespielt werden, wenn diese HTTP unterstützen.
+
+Der Programmcode, welcher auf dem Server läuft, ist auf [GitHub](https://github.com/taylonr/postman) abgelegt. 
+
+
 ## Vorbereitung
 - [Postman](https://www.postman.com/download) downloaden 
 - Postman-Account erstellen (free) und einloggen
-- Postman Starten
+- Postman starten
 
 ## Erste Übung:  GET-REQUEST
 
@@ -37,16 +43,16 @@
 		- Wie sieht die URL oben beim Get-Request nach dem "Fragezeichen" aus?   
 		- Wie nennt man den Text hinter dem Fragezeichen?  
 
-    Beziehen Sie sich auf den letzten Output und geben Sie in der ZWEITEN Zeile im "Key"-Feld den Begriff "author" und im "Value"-Feld "a" ein (keine Grossbuchstaben).
-		- Weshalb gibt es jetzt keinen Output? 
-		- Wie sieht die URL oben beim Get-Request nach dem "Fragezeichen" jetzt aus?  
+    Beziehen Sie sich auf den letzten Output und geben Sie in der ZWEITEN Zeile im "Key"-Feld den Begriff "author" und im "Value"-Feld "a" ein (keine Grossbuchstaben).  
+		- Weshalb gibt es jetzt keinen Output?   
+		- Wie sieht die URL oben beim Get-Request nach dem "Fragezeichen" jetzt aus?     
 		- Was bedeutet das Kaufmannszeichen "&"?  
 
 1. Öffnen Sie einen neuen Tab. Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books
-		- Vergessen Sie dabei nicht, dass Sie auch hier den Token im Header eintragen, damit Sie Abfragen durchführen können -->  Key: G-TOKEN  Value: ROM831ESV  
-		- Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books.   
-		- Klicken Sie jetzt beim "Send"-Buttom auf den weissen Pfeil und wählen Sie "Send and Download" aus --> Der Output wird nun in Form eines .json-Files auf Ihren 
-		  Rechner runtergeladen (response.json)  
+		- Vergessen Sie dabei nicht, dass Sie auch hier den Token im Header eintragen, damit Sie Abfragen durchführen können      
+Key: G-TOKEN  Value: ROM831ESV   
+		- Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books.    
+		- Klicken Sie jetzt beim "Send"-Buttom auf den weissen Pfeil und wählen Sie "Send and Download" aus   --> Der Output wird nun in Form eines .json-Files auf Ihren Rechner runtergeladen (response.json)  
 
 
 ## Zweite Übung:  POST-Request (Neue Items in die Inventarliste eintragen)
@@ -77,14 +83,13 @@
 	 2.) Key: "Content-Length" Value <calculated when request is sent>  
 
    Dann nochmals die POST-Methode ausführen - Feld nebenan bleibt wie bisher: ${ADDR}:3000/books  
-	 ...es erscheint eine Statusmeldung "201 Created" (The request has been fulfilled and resulted in a new resource beeing created)  
-	 - Wie interpretieren Sie diesen Status-Code und die entsprechende Meldung?				<-- 201 Alle 2xx-er Meldungen sind Success-Meldungen. Der Eintrag wurde durchgeführt -
-																In diesem Fall wurde eine neue Ressource erstellt)	 
+	 Es erscheint eine Statusmeldung "201 Created" (The request has been fulfilled and resulted in a new resource beeing created)  
+	 - Wie interpretieren Sie diesen Status-Code und die entsprechende Meldung?				<-- 201 Alle 2xx-er Meldungen sind Success-Meldungen. Der Eintrag wurde durchgeführt. In diesem Fall wurde eine neue Ressource erstellt.
 
-    Wiederholen sie das 3x (POST ${ADDR}:3000/books --> Send)  - derselbe Eintrag wird 3x erstellt (3x Redundant). Brauchen wir für die nächste Übung
+    Wiederholen sie das 3x (POST ${ADDR}:3000/books --> Send)  - derselbe Eintrag wird 3x erstellt (3x redundant). 
 
 
-# Dritte Übung:  POST-Request - Items aus Inventarliste löschen
+## Dritte Übung:  POST-Request - Items aus Inventarliste löschen
 Beim Löschen von Items kommt "Authorization" ins Spiel. Bisher brauchten wir das nicht, weil wir nur Daten abgefragt und eingtragen haben.
 Beim Löschen möchte das System wissen wer der Anfrager ist, um sicherzustellen, damit nicht Unbefugte Daten entfernen können.
 
@@ -101,7 +106,7 @@ Beim Löschen möchte das System wissen wer der Anfrager ist, um sicherzustellen
 
 
 
-# Challenge
+## Challenge
 
 Erstellen Sie einen Eintrag mit folgendem Content
 
@@ -111,3 +116,32 @@ Erstellen Sie einen Eintrag mit folgendem Content
           "isbn": "M239",
           "releaseDate": "2021-03-15"
       }
+
+## Aufrufe mit PowerShell
+Mit PowerShell erfolgen die Anfragen wie folgt (Beispiele):
+															    
+### Lesen der vorhandenen Bücher
+
+		$result = Invoke-WebRequest  `
+			    -Uri "http://${ADDR}:3000/books"  `
+			    -Headers @{  `
+				"G-Token" = "ROM831ESV" ;  `
+			     } `
+			    -Method GET
+		$result.RawContent            
+
+### Erstellen eines neuen Bucheintrags
+
+		$result = Invoke-WebRequest  `
+			    -Uri "http://${ADDR}:3000/books"  `
+			    -Headers @{  `
+				"G-Token" = "ROM831ESV" ;  `
+				"Content-Type" = "application/json" `
+			     } `
+			    -Method Post  `
+			    -Body '{"id": "15", "title": "PowerShell", "author": "Dr. Tobias Weltner"}' 
+
+		$result.RawContent
+
+															    
+															    
