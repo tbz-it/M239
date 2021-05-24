@@ -9,14 +9,14 @@
 
 1. Öffnen Sie im Postman-Fenster oben in der Mitte einen neuen Tab 
 1. Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books  
-	...es erscheint eine Statusmeldung "403 Forbidden" --> Wurde von der Firma bewusst so implementiert:     
-	--> Unter https://developer.mozilla.org/de/docs/Web/HTTP/Status/403 finden Sie ergänzende Informationen.  
-		- Was interpretieren Sie daraus?  
+	Es erscheint eine Statusmeldung "403 Forbidden" --> Dies wurde von der Firma bewusst so implementiert:      
+	In der [Mozilla Dokumentation](https://developer.mozilla.org/de/docs/Web/HTTP/Status/403) finden Sie ergänzende Informationen.  
+		- Was folgern Sie daraus?  
 		- Wie könnte dieses Problem gelöst werden?
 
 	**Antwort**  
 	Die Firma erfordert ein API-Token. So können die API-Zugriffe der Kunden nach dem Nutzungsprinzip verrechnet werden.  
-	Der Token besteht aus folgendem Key/Value-Pair -->  Key: G-TOKEN  Value: ROM831ESV  
+	Der Token besteht aus folgendem Key/Value-Pair:  Key: G-TOKEN  Value: ROM831ESV  
 	ACHTUNG: damit wird dem Benutzer lediglich ermöglicht, auf die Serverdaten zuzugreifen. Es wurde noch KEINE Authentisierung durchgeführt!
 
 	Tragen Sie dieses Key/Value-Pair im "Header" ein und senden sie denselben GET-Request anschliessend nochmals ab.  
