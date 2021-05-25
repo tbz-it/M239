@@ -14,7 +14,7 @@ Der Programmcode, welcher auf dem Server läuft, ist auf [GitHub](https://github
 ## Erste Übung:  GET-REQUEST
 
 1. Öffnen Sie im Postman-Fenster oben in der Mitte einen neuen Tab 
-1. Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books  
+1. Wählen Sie die GET-Methode aus und ergänzen Sie die URL (Feld nebenan) wie folgt: http://${ADDR}:3000/books  
 	Es erscheint eine Statusmeldung "403 Forbidden" --> Dies wurde von der Firma bewusst so implementiert:      
 	In der [Mozilla Dokumentation](https://developer.mozilla.org/de/docs/Web/HTTP/Status/403) finden Sie ergänzende Informationen.  
 		- Was folgern Sie daraus?  
@@ -30,13 +30,13 @@ Der Programmcode, welcher auf dem Server läuft, ist auf [GitHub](https://github
 		- Welchen Output erhalten Sie?  Wenn Sie unter "Pretty"-View schauen, sehen Sie div. Einträge. Um was handelt es sich?  
 
 
-1. Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books/1  
+1. Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: http://${ADDR}:3000/books/1  
 		- Was ändert sich am Output?   
 		- Nach welchem Kriterium wird mit dieser URI gefiltert?  
 		- Hovern Sie mit dem Mauszeiger über die Zeitangabe (in ms, neben dem Statuscode) - Wieviel % des gesamten Events  
 		  nimmt der TCP-Handshake in Anspruch? (Angaben können variieren)  
 		
-1. Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books/search   
+1. Wählen Sie die GET-Methode aus und ergänzen Sie die URL nebenan wie folgt: http://${ADDR}:3000/books/search   
     Klicken Sie vor dem "Senden" auf den "Params"-Tab (links, unterhalb der GET-Eingabezeile)  
     Beziehen Sie sich auf den letzten Output und geben Sie im "Key"-Feld den Begriff "title" und im "Value"-Feld "letters" ein (keine Grossbuchstaben)  
 		- Wie sieht der Output aus?   
@@ -48,10 +48,10 @@ Der Programmcode, welcher auf dem Server läuft, ist auf [GitHub](https://github
 		- Wie sieht die URL oben beim Get-Request nach dem "Fragezeichen" jetzt aus?     
 		- Was bedeutet das Kaufmannszeichen "&"?  
 
-1. Öffnen Sie einen neuen Tab. Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books
+1. Öffnen Sie einen neuen Tab. Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: http://${ADDR}:3000/books
 		- Vergessen Sie dabei nicht, dass Sie auch hier den Token im Header eintragen, damit Sie Abfragen durchführen können      
 Key: G-TOKEN  Value: ROM831ESV   
-		- Wählen Sie die GET-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books.    
+		- Wählen Sie die GET-Methode aus und ergänzen Sie die URL wie folgt: http://${ADDR}:3000/books.    
 		- Klicken Sie jetzt beim "Send"-Buttom auf den weissen Pfeil und wählen Sie "Send and Download" aus   --> Der Output wird nun in Form eines .json-Files auf Ihren Rechner runtergeladen (response.json)  
 
 
@@ -59,7 +59,7 @@ Key: G-TOKEN  Value: ROM831ESV
 
 1. Öffnen Sie im Postman-Fenster oben in der Mitte einen neuen Tab. Vergessen Sie nicht, jedes Mal nach dem Öffnen den Token ergänzen.  
    Key: G-TOKEN  Value: ROM831ESV
-3. Wählen Sie die POST-Methode aus und ergänzen Sie das Feld nebenan wie folgt: ${ADDR}:3000/books
+3. Wählen Sie die POST-Methode aus und ergänzen Sie die URL nebenan wie folgt: http://${ADDR}:3000/books
    Klicken Sie vor dem "Senden" auf den "Body"-Tab (vierter Eintrag unterhalb der Methoden-Eingabezeile)
    Die M239-GmbH erlaubt lediglich "raw"-Daten. Klicken Sie deshalb auf den entsprechenden "Radio-Buttom" (vierter von links)
    Es erscheint unterhalb eine Text-Box. Geben Sie folgende 6 Zeilen ein (inkl. geschweifte Klammern)
@@ -82,21 +82,21 @@ Key: G-TOKEN  Value: ROM831ESV
    1.) Key: "Content-Type" Value: "application/json"  ...falls das noch nicht reicht, ergänzen Sie noch das folgende Key/Value-Pair  
 	 2.) Key: "Content-Length" Value <calculated when request is sent>  
 
-   Dann nochmals die POST-Methode ausführen - Feld nebenan bleibt wie bisher: ${ADDR}:3000/books  
+   Dann nochmals die POST-Methode ausführen - Feld nebenan bleibt wie bisher: http://${ADDR}:3000/books  
 	 Es erscheint eine Statusmeldung "201 Created" (The request has been fulfilled and resulted in a new resource beeing created)  
 	 - Wie interpretieren Sie diesen Status-Code und die entsprechende Meldung?				<-- 201 Alle 2xx-er Meldungen sind Success-Meldungen. Der Eintrag wurde durchgeführt. In diesem Fall wurde eine neue Ressource erstellt.
 
-    Wiederholen sie das 3x (POST ${ADDR}:3000/books --> Send)  - derselbe Eintrag wird 3x erstellt (3x redundant). 
+    Wiederholen sie das 3x (POST http://${ADDR}:3000/books --> Send)  - derselbe Eintrag wird 3x erstellt (3x redundant). 
 
 
 ## Dritte Übung:  POST-Request - Items aus Inventarliste löschen
 Beim Löschen von Items kommt "Authorization" ins Spiel. Bisher brauchten wir das nicht, weil wir nur Daten abgefragt und eingtragen haben.
 Beim Löschen möchte das System wissen wer der Anfrager ist, um sicherzustellen, damit nicht Unbefugte Daten entfernen können.
 
-1. In den Übungen vorher wurden Einträge allenfalls redundant eingetragen. Um das zu überprüfen, rufen wir wieder mit folgendem Eintrag die DB ab: ${ADDR}:3000/books (Header-Infos müssen definiert sein!)
+1. In den Übungen vorher wurden Einträge allenfalls redundant eingetragen. Um das zu überprüfen, rufen wir wieder mit folgendem Eintrag die DB ab: http://${ADDR}:3000/books (Header-Infos müssen definiert sein!)
    Sie erhalten ein Listing mit Bucheinträgen. Angenommen, zur ID 9 hätte es redundante Einträge, welche gelöscht werden sollen:
 
-1. DELETE ${ADDR}:3000/books/9 eingeben und auf den Buttom "Send" drücken:  
+1. DELETE http://${ADDR}:3000/books/9 eingeben und auf den Buttom "Send" drücken:  
 		- Wie sieht der Output aus? Welchen Status-Code erhalten Sie?						<-- 401 Unauthorized   <-- Gem. https://httpstatuses.com/  
 		- Welche Fehlermeldung?											<-- Siehe https://httpstatuses.com/ (The server generating a 401 response MUST send a WWW-Authenticate header field...  
 		- Was könnte ein möglicher Grund sein und wie lässt sich das Problem beheben? 				<-- Authorization: Um Daten zu löschen, muss man sich authentifizieren   
